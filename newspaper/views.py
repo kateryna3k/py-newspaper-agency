@@ -6,6 +6,14 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Redactor, Newspaper, Topic
+from .forms import (
+    RedactorCreationForm,
+    RedactorExperienceUpdateForm,
+    NewspaperForm,
+    RedactorSearchForm,
+    NewspaperSearchForm,
+    TopicSearchForm
+)
 
 
 @login_required
