@@ -37,60 +37,71 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
     queryset = Topic.objects.all()
 
 
-class RedactorListView(LoginRequiredMixin, generic.ListView):
-    pass
-
-
-class NewspaperListView(LoginRequiredMixin, generic.ListView):
-    pass
-
-
-class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
-    pass
-
-
-class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
-    pass
-
-
-class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
-    pass
-
-
-class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
-    pass
-
-
-class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
-    pass
-
-
-class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
-    pass
-
-
-class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
-    pass
-
-
-class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
-    pass
-
-
 class TopicCreateView(LoginRequiredMixin, generic.CreateView):
-    pass
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("newspaper:redactor-list")
 
 
 class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
-    pass
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("newspaper:redactor-list")
 
 
 class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
-    pass
+    model = Topic
+    success_url = reverse_lazy("newspaper:redactor-list")
+
+
+class RedactorListView(LoginRequiredMixin, generic.ListView):
+    model = Redactor
+    paginate_by = 5
+    queryset = Redactor.objects.all()
+
+
+class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Redactor
+    queryset = Redactor.objects.all().prefetch_related("newspapers__topics")
+
+
+class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Redactor
 
 
 class RedactorExperienceUpdateView(LoginRequiredMixin, generic.UpdateView):
-    pass
+    model = Redactor
+    success_url = reverse_lazy("newspaper:redactor-list")
+
+
+class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Redactor
+    success_url = reverse_lazy("")
+
+
+class NewspaperListView(LoginRequiredMixin, generic.ListView):
+    model = Newspaper
+    paginate_by = 5
+    queryset = Newspaper.objects.all().select_related("topic")
+
+
+class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Newspaper
+
+
+class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Newspaper
+    success_url = reverse_lazy("newspaper:newspaper-list")
+
+
+class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Newspaper
+    success_url = reverse_lazy("newspaper:newspaper-list")
+
+
+class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("newspaper:newspaper-list")
 
 
 def toggle_assign_to_newspaper(request, pk):
