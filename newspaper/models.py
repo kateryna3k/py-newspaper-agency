@@ -14,7 +14,7 @@ class Topic(models.Model):
 
 
 class Redactor(AbstractUser):
-    years_of_experience = models.PositiveIntegerField()
+    years_of_experience = models.PositiveIntegerField(null=True)
 
     class Meta:
         verbose_name = "redactor"

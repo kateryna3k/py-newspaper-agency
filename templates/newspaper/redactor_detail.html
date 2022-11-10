@@ -7,20 +7,20 @@
       Delete
     </a>
 
-    <a href="{% url 'newspaper:redactor-update' pk=redactor %}" class="btn btn-secondary link-to-page">
+    <a href="{% url 'newspaper:redactor-update' pk=redactor.id %}" class="btn btn-secondary link-to-page">
       Update years of experience
     </a>
   </h1>
 
   <p><strong>First name:</strong> {{ redactor.first_name }}</p>
   <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
-  <p><strong>Years of experience:</strong> {{ redactor.license_number }}</p>
+  <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
   <p><strong>Is staff:</strong> {{ redactor.is_staff }}</p>
 
   <div class="ml-3">
     <h4>Newspapers</h4>
 
-    {% for newspaper in redactor.cxars.all %}
+    {% for newspaper in redactor.newspapers.all %}
         <hr>
         <p><strong>Title:</strong> {{ newspaper.title }}</p>
         <p><strong>Topic:</strong> {{ newspaper.topic.name }}</p>

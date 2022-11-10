@@ -64,21 +64,21 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
 class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     model = Topic
     fields = "__all__"
-    success_url = reverse_lazy("newspaper:redactor-list")
+    success_url = reverse_lazy("newspaper:topic-list")
 
 
 class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Topic
     fields = "__all__"
-    success_url = reverse_lazy("newspaper:redactor-list")
+    success_url = reverse_lazy("newspaper:topic-list-list")
 
 
 class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Topic
-    success_url = reverse_lazy("newspaper:redactor-list")
+    success_url = reverse_lazy("newspaper:topic-list")
 
 
-class RedactorListView(LoginRequiredMixin, generic.ListView):
+class RedactorListView(generic.ListView, LoginRequiredMixin):
     model = Redactor
     paginate_by = 5
     queryset = Redactor.objects.all()
@@ -100,12 +100,12 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
         return self.queryset
 
 
-class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
+class RedactorDetailView(generic.DetailView):
     model = Redactor
-    queryset = Redactor.objects.all().prefetch_related("newspapers__topics")
+    queryset = Redactor.objects.all().prefetch_related("newspapers__topic")
 
 
-class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
+class RedactorCreateView(generic.CreateView):
     model = Redactor
     form_class = RedactorCreationForm
 
@@ -129,9 +129,9 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
     # Check it later
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(NewspaperListView, self).get_context_data(**kwargs)
-        topic = self.request.GET.get("topic", "")
+        title = self.request.GET.get("title", "")
         context["search_form"] = NewspaperSearchForm(
-            initial={"topic": topic}
+            initial={"title": title}
         )
         return context
 
@@ -139,7 +139,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
         form = NewspaperSearchForm(self.request.GET)
         if form.is_valid():
             return self.queryset.filter(
-                model__icontains=form.cleaned_data["topic"]
+                topic__newspaper__title__icontains=form.cleaned_data["title"]
             )
         return self.queryset
 
@@ -167,13 +167,14 @@ class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 @login_required
 def toggle_assign_to_newspaper(request, pk):
-    redactor = Redactor.objects.get(id=request.user.id)
+    print("pk", pk)
+    newspaper = Newspaper.objects.get(pk=pk)
     if (
-        Redactor.objects.get(id=pk) in redactor.cars.all()
+        request.user.id in newspaper.publishers.values_list("id", flat=True)
     ):
-        redactor.cars.remove(pk)
+        newspaper.publishers.remove(request.user.id)
     else:
-        redactor.cars.add(pk)
+        newspaper.publishers.add(request.user.id)
     return HttpResponseRedirect(
-        reverse_lazy("newspaper:redactor-list", args=[pk])
+        reverse_lazy("newspaper:newspaper-detail", args=[pk])
     )

@@ -15,14 +15,20 @@
   </form>
 
   {% if newspaper_list %}
-    <ul>
+    <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Topic</th>
+    </tr>
       {% for newspaper in newspaper_list %}
-        <li>
-          <a href="{% url 'newspaper:newspaper-detail' pk=newspaper.id %} ">{{ newspaper.id }}</a>
-          {{ newspaper.topic }} ({{ newspaper.topic.name }})
-        </li>
+        <tr>
+          <td><a href="{% url 'newspaper:newspaper-detail' pk=newspaper.id %} ">{{ newspaper.id }}</a></td>
+          <td>{{ newspaper.title }}</td>
+          <td>{{ newspaper.topic.name }}</td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
   {% else %}
     <p>There are no newspapers in agency</p>
   {% endif %}

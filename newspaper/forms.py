@@ -7,7 +7,7 @@ from newspaper.models import Newspaper, Redactor
 
 
 class NewspaperForm(forms.ModelForm):
-    newspapers = forms.ModelMultipleChoiceField(
+    publishers = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
@@ -58,11 +58,11 @@ class RedactorSearchForm(forms.Form):
 
 
 class NewspaperSearchForm(forms.Form):
-    model = forms.CharField(
+    title = forms.CharField(
         max_length=100,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by topic"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"})
     )
 
 

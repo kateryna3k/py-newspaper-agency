@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    {{ newspaper.topic }}
+  <div>
+    <h1>
+      {{ newspaper.title }}
+    </h1>
+
     <a href="{% url 'newspaper:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger link-to-page">
       Delete
     </a>
@@ -10,9 +13,20 @@
     <a href="{% url 'newspaper:newspaper-update' pk=newspaper.id %}" class="btn btn-secondary link-to-page">
       Update
     </a>
-  </h1>
-  <p>Topic: {{ newspaper.topic.name }}</p>
-  <h1>
+  </div>
+  <h2>Topic: {{ newspaper.topic.name }}</h2>
+
+  <p>
+    {{ newspaper.content }}
+  </p>
+
+  <h3>
+    {{ newspaper.published_date }}
+  </h3>
+
+  <hr>
+
+  <h2>
     Redactors
 
     {% if newspaper in user.newspapers.all %}
@@ -25,10 +39,10 @@
       </a>
     {% endif %}
 
-  </h1>
+  </h2>
   <hr>
   <ul>
-    {% for redactor in newspaper.redactors.all %}
+    {% for redactor in newspaper.publishers.all %}
       <li>{{ redactor.username }} ({{ redactor.first_name }} {{ redactor.last_name }})</li>
     {% endfor %}
   </ul>
