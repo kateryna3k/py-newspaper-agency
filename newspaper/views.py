@@ -27,3 +27,71 @@ def index(request):
     }
 
     return render(request, "newspaper/index.html", context=context)
+
+
+class TopicListView(LoginRequiredMixin, generic.ListView):
+    model = Topic
+    context_object_name = "topic_list"
+    template_name = "newspaper/topic_list.html"
+    paginate_by = 5
+    queryset = Topic.objects.all()
+
+
+class RedactorListView(LoginRequiredMixin, generic.ListView):
+    pass
+
+
+class NewspaperListView(LoginRequiredMixin, generic.ListView):
+    pass
+
+
+class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
+    pass
+
+
+class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
+    pass
+
+
+class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
+    pass
+
+
+class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
+    pass
+
+
+class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
+    pass
+
+
+class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
+    pass
+
+
+class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
+    pass
+
+
+class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
+    pass
+
+
+class TopicCreateView(LoginRequiredMixin, generic.CreateView):
+    pass
+
+
+class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
+    pass
+
+
+class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
+    pass
+
+
+class RedactorExperienceUpdateView(LoginRequiredMixin, generic.UpdateView):
+    pass
+
+
+def toggle_assign_to_newspaper(request, pk):
+    pass
