@@ -29,7 +29,7 @@ urlpatterns = [
     path(
         "topics/create/",
         TopicCreateView.as_view(),
-        name="manufacturer-create",
+        name="topic-create",
     ),
     path(
         "topics/<int:pk>/update/",
