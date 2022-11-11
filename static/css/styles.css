@@ -9,5 +9,36 @@ body {
 }
 
 .list-group-item {
-    background-color: #E3F7F7;
+    background-color: #A0EAEA;
+}
+
+.form-inline {
+    margin: 10px 0;
+}
+
+.form-inline input {
+    border-radius: 0;
+}
+
+.btn-primary,
+.page-item.active .page-link,
+.page-item .page-link:first-child,
+.page-item .page-link:last-child
+ {
+    background-color: #A0EAEA;
+    border-radius: 8px;
+    border-color: #6CC2C2;
+    color: #0E7777;
+}
+
+.page-item .page-link {
+    margin: 0 6px;
+}
+
+.list-group-item a{
+    color: #0E7777;
+}
+
+a{
+    color: #0E7777;
 }
