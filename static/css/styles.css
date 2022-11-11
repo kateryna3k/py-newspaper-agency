@@ -12,8 +12,20 @@ body {
     background-color: #A0EAEA;
 }
 
+form {
+}
+
 .form-inline {
     margin: 10px 0;
+}
+
+.form-group {
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-inline .form-group {
+    max-width: min-content;
 }
 
 .form-inline input {
@@ -41,4 +53,11 @@ body {
 
 a{
     color: #0E7777;
+}
+
+.article-content {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;
 }
