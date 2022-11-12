@@ -9,3 +9,6 @@ pathspec==0.10.1
 platformdirs==2.5.3
 sqlparse==0.4.3
 tomli==2.0.1
+dj_database_url==1.0.0
+psycopg2-binary==2.9.5
+whitenoise==6.2.0

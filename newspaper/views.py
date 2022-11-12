@@ -78,7 +78,7 @@ class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("newspaper:topic-list")
 
 
-class RedactorListView(generic.ListView, LoginRequiredMixin):
+class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     paginate_by = 5
     queryset = Redactor.objects.all()
@@ -100,12 +100,12 @@ class RedactorListView(generic.ListView, LoginRequiredMixin):
         return self.queryset
 
 
-class RedactorDetailView(generic.DetailView):
+class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
     queryset = Redactor.objects.all().prefetch_related("newspapers__topic")
 
 
-class RedactorCreateView(generic.CreateView):
+class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
     model = Redactor
     form_class = RedactorCreationForm
 
