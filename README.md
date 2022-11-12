@@ -27,7 +27,7 @@ $ python manage.py runserver
 
 
 ## Demo
-![img_1.png](img_1.png)
+<img width="1440" alt="Screenshot 2022-11-11 at 11 14 58" src="https://user-images.githubusercontent.com/111740601/201469957-0316eb98-68a8-45d2-96e5-48cfd127c1cb.png">
 
 
 ## Develop according to this UML diagram:
