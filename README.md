@@ -3,7 +3,7 @@ Django project for managing newspaper agency.
 
 ## Check it out!
 
-[Library project deployed to Render](LINK_HERE)
+[Library project deployed to Render](https://newspaper-agency-1ohe.onrender.com/)
 
 
 ## Installation
