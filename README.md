@@ -5,6 +5,13 @@ Django project for managing newspaper agency.
 
 [Library project deployed to Render](https://newspaper-agency-1ohe.onrender.com/)
 
+Test user:
+
+```
+login: jim
+password: rdefrdef
+```
+
 
 ## Installation
 
