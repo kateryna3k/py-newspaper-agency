@@ -35,7 +35,7 @@ class RedactorExperienceUpdateForm(forms.ModelForm):
         model = Redactor
         fields = ["years_of_experience"]
 
-    def clean_license_number(self):
+    def clean_experience(self):
         return validate_experience(self.cleaned_data["years_of_experience"])
 
 
