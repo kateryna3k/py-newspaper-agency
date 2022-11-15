@@ -70,7 +70,7 @@ class TopicCreateView(LoginRequiredMixin, generic.CreateView):
 class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Topic
     fields = "__all__"
-    success_url = reverse_lazy("newspaper:topic-list-list")
+    success_url = reverse_lazy("newspaper:topic-list")
 
 
 class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -167,7 +167,6 @@ class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 @login_required
 def toggle_assign_to_newspaper(request, pk):
-    print("pk", pk)
     newspaper = Newspaper.objects.get(pk=pk)
     if (
         request.user.id in newspaper.publishers.values_list("id", flat=True)
