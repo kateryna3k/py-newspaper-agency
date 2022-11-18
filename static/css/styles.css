@@ -1,0 +1,63 @@
+body {
+    margin-top: 20px;
+    background-color: #E3F7F7;
+}
+
+.link-to-page {
+    float: right;
+    margin: 0 2px 0 2px;
+}
+
+.list-group-item {
+    background-color: #A0EAEA;
+}
+
+form {
+}
+
+.form-inline {
+    margin: 10px 0;
+}
+
+.form-group {
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-inline .form-group {
+    max-width: min-content;
+}
+
+.form-inline input {
+    border-radius: 0;
+}
+
+.btn-primary,
+.page-item.active .page-link,
+.page-item .page-link:first-child,
+.page-item .page-link:last-child
+ {
+    background-color: #A0EAEA;
+    border-radius: 8px;
+    border-color: #6CC2C2;
+    color: #0E7777;
+}
+
+.page-item .page-link {
+    margin: 0 6px;
+}
+
+.list-group-item a{
+    color: #0E7777;
+}
+
+a{
+    color: #0E7777;
+}
+
+.article-content {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;
+}
